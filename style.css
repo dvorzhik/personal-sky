@@ -1,0 +1,145 @@
+/* ===== Personal Sky - Личный небосвод ===== */
+html {
+  background: #05050b;
+}
+
+body {
+  margin: 0;
+  background: #05050b;
+}
+
+.ps-wrap {
+  --ps-bg: #05050b;
+  --ps-panel: #10101d;
+  --ps-text: #f3f0ff;
+  --ps-muted: #c8c3d8;
+  --ps-line: rgba(195, 177, 255, .28);
+  --ps-accent: #bda8ff;
+  --ps-gold: #ffd77a;
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 44px 24px 52px;
+  background: var(--ps-bg);
+  color: var(--ps-text);
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.65;
+}
+
+.ps-wrap * {
+  box-sizing: border-box;
+}
+
+.ps-kicker {
+  margin: 0 0 12px;
+  color: var(--ps-accent);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+.ps-wrap h1,
+.ps-wrap h2 {
+  line-height: 1.18;
+}
+
+.ps-wrap h1 {
+  margin: 0;
+  font-size: clamp(38px, 7vw, 72px);
+  letter-spacing: -.05em;
+}
+
+.ps-wrap h2 {
+  margin: 0 0 16px;
+  font-size: clamp(25px, 3vw, 34px);
+}
+
+.ps-lead {
+  max-width: 680px;
+  margin: 20px 0 0;
+  color: var(--ps-muted);
+  font-size: clamp(17px, 2.5vw, 21px);
+}
+
+.ps-stars {
+  margin: 26px 0 36px;
+  color: var(--ps-gold);
+  font-size: 19px;
+  letter-spacing: .56em;
+}
+
+.ps-section {
+  padding: 36px 0 0;
+  border-top: 1px solid var(--ps-line);
+  margin-top: 36px;
+}
+
+.ps-wrap p {
+  margin: 0 0 16px;
+}
+
+.ps-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  border: 1px solid var(--ps-line);
+  background: var(--ps-line);
+}
+
+.ps-card {
+  min-height: 150px;
+  padding: 22px;
+  background: var(--ps-panel);
+}
+
+.ps-card h3 {
+  margin: 0 0 8px;
+  color: var(--ps-text);
+  font-size: 16px;
+}
+
+.ps-card p {
+  margin: 0;
+  color: var(--ps-muted);
+  font-size: 15px;
+}
+
+.ps-note {
+  margin-top: 20px;
+  padding: 20px;
+  border-left: 2px solid var(--ps-accent);
+  background: rgba(189, 168, 255, .09);
+  color: var(--ps-text);
+}
+
+.ps-link {
+  display: inline-block;
+  margin-top: 6px;
+  padding: 11px 16px;
+  border: 1px solid var(--ps-accent);
+  color: var(--ps-text) !important;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.ps-footer {
+  margin-top: 38px;
+  padding-top: 20px;
+  border-top: 1px solid var(--ps-line);
+  color: var(--ps-muted);
+  font-size: 14px;
+}
+
+@media (max-width: 640px) {
+  .ps-wrap {
+    padding: 32px 18px 40px;
+  }
+
+  .ps-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ps-card {
+    min-height: auto;
+  }
+}
