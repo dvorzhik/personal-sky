@@ -14,13 +14,20 @@
 
 ## Публикация
 
+Сайт опубликован через GitHub Pages:
+
+- `https://dvorzhik.github.io/personal-sky/` — описание приложения
+- `https://dvorzhik.github.io/personal-sky/privacy.html` — политика конфиденциальности
+
+Для работы Pages в настройках репозитория включите **Settings → Pages → Source: Deploy from a branch → `main` / `root`**.
+
 Ссылку на `privacy.html` можно указывать в карточке приложения в Google Play.
 
 ## Важно
 
 Тексты страниц синхронизированы с секциями `#personalsky` и `#personalsky_privacy` лендинга
-[vibecoding](https://github.com/dvorzhik/vibecoding). При изменении текстов правки нужно
-вносить в оба места либо позже перевести лендинг на ссылки сюда.
+[vibecoding](https://github.com/dvorzhik/vibecoding). Лендинг теперь ссылается на этот сайт,
+но секции с текстом там сохранены. При изменении текстов правки нужно вносить в оба места.
 
 ## Контакты
 
