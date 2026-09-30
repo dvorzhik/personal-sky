@@ -1,145 +1,734 @@
-/* ===== Personal Sky - Личный небосвод ===== */
+/* ===== Personal Sky — Личный небосвод ===== */
+:root {
+  --ps-bg: #05050b;
+  --ps-panel: #10101d;
+  --ps-panel-soft: #15152a;
+  --ps-text: #f3f0ff;
+  --ps-muted: #c8c3d8;
+  --ps-dim: #8f8aa6;
+  --ps-line: rgba(195, 177, 255, .28);
+  --ps-line-soft: rgba(195, 177, 255, .14);
+  --ps-accent: #bda8ff;
+  --ps-accent-deep: #7b5cd6;
+  --ps-gold: #ffd77a;
+  --ps-radius: 18px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 html {
-  background: #05050b;
+  background: var(--ps-bg);
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
   margin: 0;
-  background: #05050b;
-}
-
-.ps-wrap {
-  --ps-bg: #05050b;
-  --ps-panel: #10101d;
-  --ps-text: #f3f0ff;
-  --ps-muted: #c8c3d8;
-  --ps-line: rgba(195, 177, 255, .28);
-  --ps-accent: #bda8ff;
-  --ps-gold: #ffd77a;
-  max-width: 920px;
-  margin: 0 auto;
-  padding: 44px 24px 52px;
   background: var(--ps-bg);
   color: var(--ps-text);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, Helvetica, sans-serif;
   line-height: 1.65;
 }
 
-.ps-wrap * {
-  box-sizing: border-box;
+/* --- Фоновое звёздное небо --- */
+/* Фиксированный слой: декоративные свечения ограничены так, чтобы не создавать overflow. */
+.ps-sky {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  background:
+    radial-gradient(1200px 600px at 78% -6%, rgba(123, 92, 214, .30), transparent 62%),
+    radial-gradient(900px 520px at 8% 4%, rgba(189, 168, 255, .16), transparent 60%),
+    radial-gradient(700px 700px at 50% 108%, rgba(123, 92, 214, .18), transparent 65%);
 }
 
-.ps-kicker {
-  margin: 0 0 12px;
-  color: var(--ps-accent);
-  font-size: 12px;
+.ps-sky::before,
+.ps-sky::after {
+  content: "";
+  position: absolute;
+  inset: -50% -50%;
+  background-image:
+    radial-gradient(1.6px 1.6px at 20% 30%, rgba(255, 255, 255, .85), transparent 60%),
+    radial-gradient(1.2px 1.2px at 70% 12%, rgba(255, 215, 122, .75), transparent 60%),
+    radial-gradient(1.4px 1.4px at 42% 68%, rgba(255, 255, 255, .60), transparent 60%),
+    radial-gradient(1px 1px at 88% 54%, rgba(189, 168, 255, .80), transparent 60%),
+    radial-gradient(1.1px 1.1px at 12% 82%, rgba(255, 255, 255, .55), transparent 60%),
+    radial-gradient(1.3px 1.3px at 60% 92%, rgba(189, 168, 255, .55), transparent 60%);
+  background-size: 340px 340px;
+  opacity: .5;
+  animation: ps-drift 90s linear infinite;
+}
+
+.ps-sky::after {
+  background-size: 520px 520px;
+  opacity: .32;
+  animation-duration: 150s;
+  animation-direction: reverse;
+}
+
+@keyframes ps-drift {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(-340px, -220px, 0); }
+}
+
+.ps-sky__glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(70px);
+}
+
+/* Свечения центрированы внутри слоя: их blur не выходит за пределы viewport. */
+.ps-sky__glow--accent {
+  top: -14%;
+  left: 38%;
+  width: 46%;
+  height: 42%;
+  background: rgba(123, 92, 214, .34);
+}
+
+.ps-sky__glow--gold {
+  top: 32%;
+  left: 6%;
+  width: 30%;
+  height: 26%;
+  background: rgba(255, 215, 122, .12);
+}
+
+.ps-sky__glow--nebula {
+  top: 70%;
+  left: 34%;
+  width: 42%;
+  height: 36%;
+  background: rgba(189, 168, 255, .16);
+}
+
+.ps-wrap {
+  position: relative;
+  z-index: 1;
+  max-width: 1060px;
+  margin: 0 auto;
+  padding: 48px 24px 56px;
+}
+
+.ps-skip {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 10;
+  padding: 12px 18px;
+  background: var(--ps-gold);
+  color: #1a1405;
   font-weight: 700;
-  letter-spacing: .14em;
-  text-transform: uppercase;
+  text-decoration: none;
 }
 
+.ps-skip:focus {
+  left: 16px;
+  top: 16px;
+}
+
+/* --- Типографика --- */
 .ps-wrap h1,
-.ps-wrap h2 {
+.ps-wrap h2,
+.ps-wrap h3 {
   line-height: 1.18;
+  overflow-wrap: break-word;
+  hyphens: auto;
 }
 
 .ps-wrap h1 {
-  margin: 0;
-  font-size: clamp(38px, 7vw, 72px);
-  letter-spacing: -.05em;
+  margin: 14px 0 0;
+  font-size: clamp(40px, 7.4vw, 74px);
+  letter-spacing: -.045em;
+}
+
+/* Заголовок страницы политики — та же айдентика, но компактнее и без переноса. */
+.ps-wrap h1.ps-title--tight {
+  font-size: clamp(26px, 3.6vw, 40px);
+  line-height: 1.2;
+  letter-spacing: -.02em;
+  hyphens: none;
+  overflow-wrap: normal;
+  text-wrap: balance;
 }
 
 .ps-wrap h2 {
   margin: 0 0 16px;
-  font-size: clamp(25px, 3vw, 34px);
+  font-size: clamp(25px, 3.2vw, 36px);
+  letter-spacing: -.02em;
 }
 
-.ps-lead {
-  max-width: 680px;
-  margin: 20px 0 0;
-  color: var(--ps-muted);
-  font-size: clamp(17px, 2.5vw, 21px);
-}
-
-.ps-stars {
-  margin: 26px 0 36px;
-  color: var(--ps-gold);
-  font-size: 19px;
-  letter-spacing: .56em;
-}
-
-.ps-section {
-  padding: 36px 0 0;
-  border-top: 1px solid var(--ps-line);
-  margin-top: 36px;
+.ps-wrap h3 {
+  margin: 0 0 8px;
+  font-size: 16px;
 }
 
 .ps-wrap p {
   margin: 0 0 16px;
+  overflow-wrap: break-word;
 }
 
-.ps-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1px;
+.ps-wrap a {
+  color: var(--ps-accent);
+  overflow-wrap: break-word;
+}
+
+.ps-kicker {
+  margin: 0;
+  color: var(--ps-accent);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+
+.ps-lead {
+  max-width: 720px;
+  margin: 20px 0 0;
+  color: var(--ps-muted);
+  font-size: clamp(17px, 2.4vw, 21px);
+}
+
+/* --- Hero --- */
+.ps-hero {
+  padding-bottom: 8px;
+}
+
+.ps-icon {
+  display: block;
+  width: 88px;
+  height: 88px;
+  margin: 22px 0 0;
+  border-radius: 22px;
+  box-shadow: 0 18px 46px rgba(123, 92, 214, .45), 0 0 0 1px var(--ps-line-soft);
+}
+
+.ps-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 30px 0 0;
+}
+
+.ps-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 24px;
   border: 1px solid var(--ps-line);
-  background: var(--ps-line);
-}
-
-.ps-card {
-  min-height: 150px;
-  padding: 22px;
-  background: var(--ps-panel);
-}
-
-.ps-card h3 {
-  margin: 0 0 8px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .04);
   color: var(--ps-text);
-  font-size: 16px;
+  /* Явный line-height: у <button> иначе остаётся UA-значение `normal` и высота не совпадает с <a class="ps-btn">. */
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.25;
+  text-decoration: none;
+  transition: transform .18s ease, background-color .18s ease, border-color .18s ease;
 }
 
-.ps-card p {
+.ps-btn:hover,
+.ps-btn:focus-visible {
+  transform: translateY(-2px);
+  border-color: var(--ps-accent);
+  background: rgba(189, 168, 255, .14);
+}
+
+.ps-btn--primary {
+  border-color: transparent;
+  background: linear-gradient(135deg, var(--ps-accent) 0%, var(--ps-accent-deep) 100%);
+  color: #12082a;
+  box-shadow: 0 14px 34px rgba(123, 92, 214, .42);
+}
+
+.ps-btn--primary:hover,
+.ps-btn--primary:focus-visible {
+  background: linear-gradient(135deg, #cdbcff 0%, #8a6ae0 100%);
+}
+
+.ps-btn:focus-visible,
+.ps-link:focus-visible {
+  outline: 2px solid var(--ps-gold);
+  outline-offset: 3px;
+}
+
+.ps-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 26px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ps-badges li {
+  padding: 7px 14px;
+  border: 1px solid var(--ps-line-soft);
+  border-radius: 999px;
+  background: rgba(189, 168, 255, .07);
+  color: var(--ps-muted);
+  font-size: 13px;
+}
+
+/* --- Секции --- */
+.ps-section {
+  margin-top: 44px;
+  padding-top: 40px;
+  border-top: 1px solid var(--ps-line-soft);
+}
+
+.ps-section-lead {
+  max-width: 620px;
+  color: var(--ps-muted);
+}
+
+/* --- Шаги --- */
+.ps-steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+  margin: 28px 0 0;
+}
+
+.ps-step {
+  position: relative;
+  padding: 22px;
+  border: 1px solid var(--ps-line-soft);
+  border-radius: var(--ps-radius);
+  background: linear-gradient(160deg, var(--ps-panel) 0%, rgba(16, 16, 29, .55) 100%);
+}
+
+.ps-step__label {
+  margin: 0 0 10px;
+  color: var(--ps-gold);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+
+.ps-step p:last-child {
   margin: 0;
   color: var(--ps-muted);
   font-size: 15px;
 }
 
-.ps-note {
-  margin-top: 20px;
-  padding: 20px;
+.ps-quote {
+  margin: 28px 0 0;
+  padding: 22px 24px;
+  border: 0;
   border-left: 2px solid var(--ps-accent);
-  background: rgba(189, 168, 255, .09);
+  border-radius: 0 var(--ps-radius) var(--ps-radius) 0;
+  background: rgba(189, 168, 255, .08);
   color: var(--ps-text);
+  font-size: clamp(16px, 2vw, 18px);
 }
 
-.ps-link {
-  display: inline-block;
-  margin-top: 6px;
-  padding: 11px 16px;
-  border: 1px solid var(--ps-accent);
-  color: var(--ps-text) !important;
-  font-weight: 700;
-  text-decoration: none;
+/* --- Карусель скриншотов --- */
+.ps-shots {
+  display: flex;
+  gap: 18px;
+  margin: 28px 0 0;
+  padding: 6px 4px 22px;
+  overflow-x: auto;
+  list-style: none;
+  scroll-snap-type: x mandatory;
+  scroll-padding-left: 4px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--ps-accent-deep) transparent;
 }
 
-.ps-footer {
-  margin-top: 38px;
-  padding-top: 20px;
-  border-top: 1px solid var(--ps-line);
+.ps-shots::-webkit-scrollbar {
+  height: 8px;
+}
+
+.ps-shots::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, .05);
+  border-radius: 999px;
+}
+
+.ps-shots::-webkit-scrollbar-thumb {
+  background: var(--ps-accent-deep);
+  border-radius: 999px;
+}
+
+.ps-shot {
+  flex: 0 0 clamp(210px, 62vw, 254px);
+  scroll-snap-align: start;
+}
+
+.ps-shot img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--ps-line-soft);
+  border-radius: 22px;
+  background: var(--ps-bg-soft);
+  box-shadow: 0 22px 48px rgba(0, 0, 0, .55);
+  transition: transform .25s ease, border-color .25s ease;
+}
+
+.ps-shot__caption {
+  margin: 14px 0 0;
   color: var(--ps-muted);
   font-size: 14px;
 }
 
+.ps-shot__caption strong {
+  display: block;
+  margin-bottom: 2px;
+  color: var(--ps-text);
+  font-size: 15px;
+}
+
+/* --- Карточки возможностей --- */
+.ps-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(258px, 1fr));
+  gap: 14px;
+  margin-top: 26px;
+}
+
+.ps-card {
+  position: relative;
+  padding: 24px 22px;
+  border: 1px solid var(--ps-line-soft);
+  border-radius: var(--ps-radius);
+  background: linear-gradient(165deg, var(--ps-panel) 0%, var(--ps-panel-soft) 100%);
+  transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+}
+
+.ps-card__star {
+  margin: 0 0 12px;
+  color: var(--ps-gold);
+  font-size: 15px;
+}
+
+.ps-card p:last-child {
+  margin: 0;
+  color: var(--ps-muted);
+  font-size: 15px;
+}
+
+@media (hover: hover) {
+  .ps-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--ps-line);
+    box-shadow: 0 20px 44px rgba(123, 92, 214, .26);
+  }
+
+  .ps-shot img:hover {
+    transform: translateY(-4px);
+    border-color: var(--ps-line);
+  }
+}
+
+/* --- Факты о приватности --- */
+.ps-facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1px;
+  margin: 26px 0 0;
+  padding: 1px;
+  border-radius: var(--ps-radius);
+  background: var(--ps-line-soft);
+  list-style: none;
+  overflow: hidden;
+}
+
+.ps-facts li {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 16px 18px;
+  background: var(--ps-bg);
+}
+
+.ps-facts strong {
+  font-size: 15px;
+}
+
+.ps-facts span {
+  color: var(--ps-dim);
+  font-size: 13px;
+}
+
+/* --- Ссылка-кнопка --- */
+.ps-link {
+  display: inline-block;
+  margin-top: 6px;
+  padding: 12px 18px;
+  border: 1px solid var(--ps-accent);
+  border-radius: 999px;
+  color: var(--ps-text);
+  font-weight: 700;
+  text-decoration: none;
+  transition: background-color .18s ease;
+}
+
+.ps-link:hover {
+  background: rgba(189, 168, 255, .16);
+}
+
+/* --- Поддержка проекта --- */
+.ps-support {
+  position: relative;
+  margin-top: 48px;
+  padding: 36px 30px;
+  border: 1px solid var(--ps-line);
+  border-radius: 26px;
+  background:
+    radial-gradient(520px 220px at 12% 0%, rgba(255, 215, 122, .14), transparent 70%),
+    linear-gradient(160deg, var(--ps-panel) 0%, rgba(9, 9, 20, .9) 100%);
+  overflow: hidden;
+}
+
+.ps-support__glow {
+  position: absolute;
+  top: -30%;
+  right: 8%;
+  width: 42%;
+  height: 70%;
+  border-radius: 50%;
+  background: rgba(123, 92, 214, .28);
+  filter: blur(70px);
+  pointer-events: none;
+}
+
+.ps-support h2 {
+  margin-top: 6px;
+}
+
+/* Текст занимает всю ширину блока поддержки. */
+.ps-support__lead {
+  position: relative;
+  max-width: none;
+  color: var(--ps-muted);
+}
+
+/* --- Кнопка «Сказать спасибо», меняющаяся на «Угостить кофе» --- */
+/* Селектор с .ps-wrap нужен, чтобы перебить `.ps-wrap a { color: var(--ps-accent) }`. */
+.ps-wrap a.ps-btn--thanks {
+  position: relative;
+  margin-top: 24px;
+  padding: 15px 28px;
+  border-color: transparent;
+  background: linear-gradient(135deg, var(--ps-gold) 0%, #e0a94f 100%);
+  color: #241503;
+  box-shadow: 0 16px 38px rgba(255, 215, 122, .28);
+}
+
+/* Кнопка поддержки — визуальный акцент блока. */
+.ps-wrap a.ps-btn--thanks:hover,
+.ps-wrap a.ps-btn--thanks:focus-visible {
+  background: linear-gradient(135deg, #ffe4a0 0%, #eeb75c 100%);
+  color: #241503;
+}
+
+.ps-btn--thanks .ps-btn__icon {
+  margin-right: 10px;
+  font-size: 17px;
+  animation: ps-twinkle 3.4s ease-in-out infinite;
+}
+
+.ps-btn__labels {
+  position: relative;
+  display: inline-block;
+  text-align: left;
+}
+
+.ps-btn__label {
+  display: block;
+  line-height: 1.25;
+}
+
+.ps-btn__label--thanks {
+  animation: ps-swap-a 7s ease-in-out infinite;
+}
+
+.ps-btn__label--coffee {
+  position: absolute;
+  inset: 0;
+  animation: ps-swap-b 7s ease-in-out infinite;
+}
+
+.ps-btn__sub {
+  display: block;
+  margin-top: 3px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  opacity: .72;
+}
+
+@keyframes ps-swap-a {
+  0%, 42%   { opacity: 1; }
+  50%, 90%  { opacity: 0; }
+  98%, 100% { opacity: 1; }
+}
+
+@keyframes ps-swap-b {
+  0%, 42%   { opacity: 0; }
+  50%, 90%  { opacity: 1; }
+  98%, 100% { opacity: 0; }
+}
+
+@keyframes ps-twinkle {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: .5; }
+}
+
+.ps-thanks-link {
+  color: var(--ps-gold);
+}
+
+.ps-thanks-link:hover {
+  color: #ffe4a0;
+}
+
+/* --- Финальный призыв --- */
+/* Секция без «коробки»: рамка, фон и отступы — как у остальных секций (`Привычки как созвездия`). */
+.ps-cta p {
+  max-width: 620px;
+  margin: 0;
+  color: var(--ps-muted);
+}
+
+.ps-cta .ps-actions {
+  margin-top: 26px;
+}
+
+/* --- Кнопка «Рассказать друзьям» --- */
+/* Размер и типографика — как у `.ps-btn`, чтобы кнопки в ряду совпадали. */
+.ps-btn--share {
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.ps-btn--share .ps-btn__share-label {
+  display: block;
+  line-height: 1.25;
+}
+
+.ps-btn--share.is-done {
+  border-color: var(--ps-accent);
+  background: rgba(189, 168, 255, .18);
+}
+
+/* Текст только для скринридеров. */
+.ps-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* --- Футер --- */
+.ps-footer {
+  margin-top: 46px;
+  padding-top: 24px;
+  border-top: 1px solid var(--ps-line-soft);
+  color: var(--ps-muted);
+  font-size: 14px;
+}
+
+.ps-footer p {
+  margin: 0 0 8px;
+}
+
+.ps-footer__brand {
+  color: var(--ps-text);
+  font-weight: 700;
+}
+
+.ps-footer__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 0 !important;
+}
+
+.ps-footer__links span {
+  color: var(--ps-dim);
+}
+
+/* --- Адаптивность --- */
 @media (max-width: 640px) {
   .ps-wrap {
-    padding: 32px 18px 40px;
+    padding: 34px 18px 44px;
   }
 
-  .ps-grid {
-    grid-template-columns: 1fr;
+  .ps-wrap h1 {
+    font-size: clamp(30px, 9vw, 44px);
   }
 
-  .ps-card {
-    min-height: auto;
+  .ps-icon {
+    width: 72px;
+    height: 72px;
+    border-radius: 18px;
+  }
+
+  .ps-actions .ps-btn {
+    flex: 1 1 100%;
+  }
+
+  .ps-section {
+    margin-top: 34px;
+    padding-top: 30px;
+  }
+
+  .ps-support {
+    padding: 28px 20px;
+    border-radius: 22px;
+  }
+
+  .ps-support .ps-btn--thanks {
+    width: 100%;
+  }
+
+  .ps-facts {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .ps-sky::before,
+  .ps-sky::after {
+    animation: none;
+  }
+
+  .ps-btn,
+  .ps-card,
+  .ps-shot img {
+    transition: none;
+  }
+
+  .ps-btn__label--thanks,
+  .ps-btn__label--coffee,
+  .ps-btn--thanks .ps-btn__icon {
+    animation: none;
+  }
+
+  .ps-btn__label--coffee {
+    position: static;
+    display: none;
   }
 }

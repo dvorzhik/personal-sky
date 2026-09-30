@@ -6,46 +6,319 @@
   <title>Личный небосвод — Personal Sky</title>
   <meta name="description" content="Personal Sky («Личный небосвод») — локальный Android-трекер привычек, в котором маленькие действия складываются в личное созвездие." />
   <meta name="theme-color" content="#05050b" />
+  <link rel="canonical" href="https://www.dvorzhik.ru/personal-sky/" />
+  <link rel="icon" href="assets/app-icon.png" />
+  <link rel="apple-touch-icon" href="assets/app-icon.png" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Personal Sky" />
+  <meta property="og:locale" content="ru_RU" />
+  <meta property="og:url" content="https://www.dvorzhik.ru/personal-sky/" />
+  <meta property="og:title" content="Личный небосвод — трекер привычек как созвездие" />
+  <meta property="og:description" content="Каждый отмеченный день зажигает звезду, пропущенный — оставляет туманность. Локально на устройстве, без аккаунта и рекламы." />
+  <meta property="og:image" content="https://www.dvorzhik.ru/personal-sky/assets/hero-sky.png" />
+  <meta property="og:image:width" content="1024" />
+  <meta property="og:image:height" content="500" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Личный небосвод — трекер привычек как созвездие" />
+  <meta name="twitter:description" content="Каждый отмеченный день зажигает звезду, пропущенный — оставляет туманность. Локально на устройстве, без аккаунта и рекламы." />
+  <meta name="twitter:image" content="https://www.dvorzhik.ru/personal-sky/assets/hero-sky.png" />
+
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <a class="ps-skip" href="#ps-main">К основному содержанию</a>
 
-  <main class="ps-wrap" aria-label="Личный небосвод">
-    <p class="ps-kicker">Android-приложение</p>
-    <h1>Личный небосвод</h1>
-    <p class="ps-lead">Трекер привычек, в котором маленькие действия складываются в личное созвездие — без обнуления пути из-за одного пропущенного дня.</p>
-    <div class="ps-stars" aria-hidden="true">✦ ✦ ✦</div>
+  <div class="ps-sky" aria-hidden="true">
+    <span class="ps-sky__glow ps-sky__glow--accent"></span>
+    <span class="ps-sky__glow ps-sky__glow--gold"></span>
+    <span class="ps-sky__glow ps-sky__glow--nebula"></span>
+  </div>
 
-    <div class="ps-section">
-      <h2>Привычки как созвездия</h2>
-      <p>Создайте небольшой путь на 5, 7 или 14 дней. Обычная отметка зажигает звезду, а день с дополнительным усилием — яркую звезду. Если день был пропущен, путь не исчезает: на его месте остаётся мягкая туманность.</p>
-      <p>«Личный небосвод» не обещает идеальную дисциплину. Он помогает увидеть движение таким, каким оно было на самом деле: с маленькими огнями, паузами и продолжением.</p>
-    </div>
+  <main class="ps-wrap" id="ps-main" aria-label="Личный небосвод">
 
-    <div class="ps-section">
-      <h2>Что есть в приложении</h2>
-      <div class="ps-grid">
-        <article class="ps-card"><h3>Карты созвездий</h3><p>Кассиопея, Большая Медведица и Орион для коротких личных путей.</p></article>
-        <article class="ps-card"><h3>Мягкий прогресс</h3><p>Пропуск не обнуляет историю: он остаётся частью честной карты.</p></article>
-        <article class="ps-card"><h3>История и архив</h3><p>Календарный путь, завершённые цели и общий «Небосвод пути».</p></article>
-        <article class="ps-card"><h3>Локальные напоминания</h3><p>Напоминание в выбранное время без аккаунта, облака и внешних сервисов.</p></article>
-        <article class="ps-card"><h3>Виджет</h3><p>Текущий день пути рядом на главном экране Android.</p></article>
-        <article class="ps-card"><h3>Обои и астрономия</h3><p>Экспорт завершённого созвездия в PNG и небольшая награда за путь.</p></article>
+    <section class="ps-hero">
+      <p class="ps-kicker">Android-приложение</p>
+      <img class="ps-icon" src="assets/app-icon.png" width="256" height="256" alt="" />
+      <h1>Личный небосвод</h1>
+      <p class="ps-lead">Трекер привычек, в котором маленькие действия складываются в личное созвездие — без обнуления пути из-за пропущенных дней.</p>
+
+      <div class="ps-actions">
+        <a class="ps-btn ps-btn--primary" href="https://play.google.com/store/apps/details?id=com.personalsky.app">
+          Установить из Google&nbsp;Play
+        </a>
+        <a class="ps-btn" href="#ps-screens">Посмотреть экраны</a>
       </div>
-    </div>
 
-    <div class="ps-section">
-      <h2>Личное пространство без лишнего</h2>
+      <ul class="ps-badges">
+        <li>Без аккаунта</li>
+        <li>Без рекламы</li>
+        <li>Без аналитики</li>
+        <li>Данные на устройстве</li>
+      </ul>
+    </section>
+
+    <section class="ps-section" aria-labelledby="ps-how">
+      <h2 id="ps-how">Привычки как созвездия</h2>
+      <p>Создайте небольшой путь на 5, 7 или 14 дней. Обычная отметка зажигает звезду, а день с дополнительным усилием — яркую звезду. Если день был пропущен, путь не исчезает: на его месте остаётся мягкая туманность.</p>
+
+      <div class="ps-steps">
+        <article class="ps-step">
+          <p class="ps-step__label">Шаг 1</p>
+          <h3>Небольшая цель</h3>
+          <p>Первая привычка «Утренняя зарядка» и маршрут на 5, 7 или 14 дней.</p>
+        </article>
+        <article class="ps-step">
+          <p class="ps-step__label">Шаг 2</p>
+          <h3>Отметка в один тап</h3>
+          <p>Обычная звезда — минимальный шаг, яркая звезда — день, когда сделали больше.</p>
+        </article>
+        <article class="ps-step">
+          <p class="ps-step__label">Шаг 3</p>
+          <h3>Путь продолжается</h3>
+          <p>Пропущенный день занимает туманность. Это часть карты, а не потеря прогресса.</p>
+        </article>
+      </div>
+
+      <blockquote class="ps-quote">«Личный небосвод» не обещает идеальную дисциплину. Он помогает увидеть движение таким, каким оно было на самом деле: с маленькими огнями, паузами и продолжением.</blockquote>
+    </section>
+
+    <section class="ps-section" id="ps-screens" aria-labelledby="ps-screens-title">
+      <h2 id="ps-screens-title">Экраны приложения</h2>
+      <p class="ps-section-lead">Пять кадров из рабочей версии — от карты созвездия до управления целью. Прокрутите вбок.</p>
+
+      <ul class="ps-shots" tabindex="0" aria-label="Скриншоты приложения">
+        <li class="ps-shot">
+          <img src="assets/screenshots/01-active-sky.png" width="540" height="1200" loading="lazy" decoding="async" alt="Главный экран: карта созвездия, день 7 из 7, кнопки отметки звезды." />
+          <p class="ps-shot__caption"><strong>Карта пути</strong>Созвездие дня с масштабированием и перемещением.</p>
+        </li>
+        <li class="ps-shot">
+          <img src="assets/screenshots/02-history.png" width="540" height="1200" loading="lazy" decoding="async" alt="История созвездия: 5 звёзд, 1 туманность и календарь пути по дням." />
+          <p class="ps-shot__caption"><strong>История созвездия</strong>Сводка по звёздам, туманностям и календарь пути.</p>
+        </li>
+        <li class="ps-shot">
+          <img src="assets/screenshots/03-archive.png" width="540" height="1200" loading="lazy" decoding="async" alt="Архив небосвода: завершённые созвездия становятся частью личной карты." />
+          <p class="ps-shot__caption"><strong>Архив небосвода</strong>Завершённые цели остаются частью вашей карты.</p>
+        </li>
+        <li class="ps-shot">
+          <img src="assets/screenshots/04-support.png" width="540" height="1200" loading="lazy" decoding="async" alt="Экран поддержки проекта: приложение остаётся бесплатным, локальным и без рекламы." />
+          <p class="ps-shot__caption"><strong>Поддержать проект</strong>Оценка в Google Play и добровольная поддержка.</p>
+        </li>
+        <li class="ps-shot">
+          <img src="assets/screenshots/05-goal-settings.png" width="540" height="1200" loading="lazy" decoding="async" alt="Управление целью: название, ритм пути, завершение и локальные данные." />
+          <p class="ps-shot__caption"><strong>Управление целью</strong>Название, напоминания и завершение пути досрочно.</p>
+        </li>
+      </ul>
+    </section>
+
+    <section class="ps-section" aria-labelledby="ps-features">
+      <h2 id="ps-features">Что есть в приложении</h2>
+      <div class="ps-grid">
+        <article class="ps-card">
+          <p class="ps-card__star" aria-hidden="true">✦</p>
+          <h3>Карты созвездий</h3>
+          <p>Кассиопея, Большая Медведица и Орион для коротких личных путей.</p>
+        </article>
+        <article class="ps-card">
+          <p class="ps-card__star" aria-hidden="true">✦</p>
+          <h3>Мягкий прогресс</h3>
+          <p>Пропуск не обнуляет историю: он остаётся частью честной карты.</p>
+        </article>
+        <article class="ps-card">
+          <p class="ps-card__star" aria-hidden="true">✦</p>
+          <h3>История и архив</h3>
+          <p>Календарный путь, завершённые цели и общий «Небосвод пути».</p>
+        </article>
+        <article class="ps-card">
+          <p class="ps-card__star" aria-hidden="true">✦</p>
+          <h3>Локальные напоминания</h3>
+          <p>Напоминание в выбранное время без аккаунта, облака и внешних сервисов.</p>
+        </article>
+        <article class="ps-card">
+          <p class="ps-card__star" aria-hidden="true">✦</p>
+          <h3>Виджет</h3>
+          <p>Текущий день пути рядом на главном экране Android.</p>
+        </article>
+        <article class="ps-card">
+          <p class="ps-card__star" aria-hidden="true">✦</p>
+          <h3>Обои и астрономия</h3>
+          <p>Экспорт завершённого созвездия в PNG и небольшая награда за путь.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="ps-section" aria-labelledby="ps-privacy">
+      <h2 id="ps-privacy">Личное пространство без лишнего</h2>
       <p>Приложение работает локально на устройстве. В текущей версии нет обязательного аккаунта, рекламы, внешней аналитики и серверной синхронизации. Цели, отметки и настройки остаются на вашем устройстве.</p>
-      <div class="ps-note">Поддержка проекта в приложении добровольная. В текущей версии она не содержит встроенных платежей, переводов или финансовых сервисов.</div>
-      <a class="ps-link" href="privacy.html">Политика конфиденциальности</a>
-    </div>
 
-    <div class="ps-footer">
-      © 2026. «Личный небосвод» / Personal Sky.<br>
-      По вопросам работы приложения и конфиденциальности: personal-sky@dvorzhik.ru
-    </div>
+      <ul class="ps-facts">
+        <li><strong>Аккаунт</strong><span>не требуется</span></li>
+        <li><strong>Реклама</strong><span>отсутствует</span></li>
+        <li><strong>Аналитика</strong><span>не подключена</span></li>
+        <li><strong>Синхронизация</strong><span>только на устройстве</span></li>
+      </ul>
+
+      <a class="ps-link" href="privacy.html">Политика конфиденциальности</a>
+    </section>
+
+    <section class="ps-section ps-support" aria-labelledby="ps-support">
+      <div class="ps-support__glow" aria-hidden="true"></div>
+      <p class="ps-kicker">Поддержка проекта</p>
+      <h2 id="ps-support">Сказать спасибо автору</h2>
+      <p class="ps-support__lead">Personal Sky бесплатное: без рекламы, без аккаунта и без аналитики. Если приложение оказалось полезным, поддержать его разработку можно добровольно — любая сумма помогает выпускать обновления и оставаться без рекламных блоков.</p>
+
+      <a class="ps-btn ps-btn--thanks" href="https://web.tribute.tg/d/QPI" target="_blank" rel="noopener noreferrer">
+        <span class="ps-btn__icon" aria-hidden="true">✦</span>
+        <span class="ps-btn__labels">
+          <span class="ps-btn__label ps-btn__label--thanks">
+            Сказать спасибо
+            <span class="ps-btn__sub">нажмите, чтобы поддержать</span>
+          </span>
+          <span class="ps-btn__label ps-btn__label--coffee">
+            Угостить кофе
+            <span class="ps-btn__sub">купить чашку кофе автору</span>
+          </span>
+        </span>
+      </a>
+    </section>
+
+    <section class="ps-section ps-cta" aria-labelledby="ps-cta">
+      <h2 id="ps-cta">Начните своё созвездие</h2>
+      <p>Путь на 5 дней — хорошая первая карта. Если день не сложится, на небе просто появится ещё одна туманность.</p>
+
+      <div class="ps-actions">
+        <a class="ps-btn ps-btn--primary" href="https://play.google.com/store/apps/details?id=com.personalsky.app">
+          Скачать в Google&nbsp;Play
+        </a>
+        <button class="ps-btn ps-btn--share" type="button" data-ps-share
+                data-ps-share-url="https://www.dvorzhik.ru/personal-sky/"
+                data-ps-share-title="Личный небосвод — трекер привычек как созвездие"
+                data-ps-share-text="Personal Sky — локальный Android-трекер привычек, где каждый отмеченный день зажигает звезду."
+                data-ps-share-done="Ссылка скопирована">
+          <span class="ps-btn__share-label">Рассказать друзьям</span>
+        </button>
+      </div>
+      <p class="ps-visually-hidden" role="status" aria-live="polite" data-ps-share-status></p>
+    </section>
+
+    <footer class="ps-footer">
+      <p class="ps-footer__brand">© 2026. «Личный небосвод» / Personal Sky.</p>
+      <p>По вопросам работы приложения и конфиденциальности: <a href="mailto:personal-sky@dvorzhik.ru">personal-sky@dvorzhik.ru</a></p>
+      <p class="ps-footer__links">
+        <a href="https://play.google.com/store/apps/details?id=com.personalsky.app">Google Play</a>
+        <span aria-hidden="true">·</span>
+        <a class="ps-thanks-link" href="https://web.tribute.tg/d/QPI" target="_blank" rel="noopener noreferrer">Сказать спасибо</a>
+        <span aria-hidden="true">·</span>
+        <a href="privacy.html">Политика конфиденциальности</a>
+      </p>
+    </footer>
   </main>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Личный небосвод (Personal Sky)",
+    "operatingSystem": "Android",
+    "applicationCategory": "LifestyleApplication",
+    "description": "Локальный трекер привычек, в котором маленькие действия складываются в личное созвездие: отметка зажигает звезду, пропущенный день оставляет туманность.",
+    "inLanguage": "ru",
+    "url": "https://www.dvorzhik.ru/personal-sky/",
+    "image": "https://www.dvorzhik.ru/personal-sky/assets/hero-sky.png",
+    "installUrl": "https://play.google.com/store/apps/details?id=com.personalsky.app",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "RUB"
+    }
+  }
+  </script>
+
+  <script>
+  // Кнопка «Рассказать друзьям» у финального призыва:
+  // нативный лист «Поделиться» там, где он есть, иначе копирование ссылки в буфер обмена.
+  (function () {
+    var button = document.querySelector("[data-ps-share]");
+    if (!button) return;
+
+    var label = button.querySelector(".ps-btn__share-label");
+    var status = document.querySelector("[data-ps-share-status]");
+    var defaultLabel = label ? label.textContent : "";
+    var resetTimer = 0;
+    var payload = {
+      url: button.getAttribute("data-ps-share-url") || location.href,
+      title: button.getAttribute("data-ps-share-title") || document.title,
+      text: button.getAttribute("data-ps-share-text") || ""
+    };
+
+    function announce(message) {
+      if (status) status.textContent = message;
+    }
+
+    function flashLabel(message) {
+      if (!label) return;
+      window.clearTimeout(resetTimer);
+      label.textContent = message;
+      button.classList.add("is-done");
+      resetTimer = window.setTimeout(function () {
+        label.textContent = defaultLabel;
+        button.classList.remove("is-done");
+      }, 2200);
+    }
+
+    function copyLink() {
+      var text = payload.text ? payload.text + " " + payload.url : payload.url;
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        return navigator.clipboard.writeText(text);
+      }
+      // Фолбэк для старых браузеров и не-HTTPS окружений.
+      return new Promise(function (resolve, reject) {
+        var area = document.createElement("textarea");
+        area.value = text;
+        area.setAttribute("readonly", "");
+        area.style.position = "fixed";
+        area.style.top = "-1000px";
+        document.body.appendChild(area);
+        area.select();
+        var ok = false;
+        try {
+          ok = document.execCommand("copy");
+        } catch (error) {
+          ok = false;
+        }
+        document.body.removeChild(area);
+        ok ? resolve() : reject(new Error("copy failed"));
+      });
+    }
+
+    function done() {
+      flashLabel(button.getAttribute("data-ps-share-done") || "Ссылка скопирована");
+      announce("Ссылка на приложение скопирована — можно отправлять друзьям");
+    }
+
+    button.addEventListener("click", function () {
+      if (navigator.share) {
+        navigator
+          .share({ title: payload.title, text: payload.text, url: payload.url })
+          .then(function () {
+            announce("Ссылка отправлена");
+          })
+          .catch(function (error) {
+            // AbortError — пользователь закрыл лист «Поделиться», это не ошибка.
+            if (error && error.name === "AbortError") return;
+            copyLink().then(done, function () {
+              announce("Не удалось поделиться. Скопируйте ссылку: " + payload.url);
+            });
+          });
+        return;
+      }
+
+      copyLink().then(done, function () {
+        announce("Не удалось скопировать ссылку: " + payload.url);
+      });
+    });
+  })();
+  </script>
 
 </body>
 </html>
