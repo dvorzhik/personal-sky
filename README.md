@@ -62,7 +62,7 @@ node tools/check-responsive.mjs http://127.0.0.1:8765/index.html
 
 Это единственный источник текстов о приложении. Ранее описание и политика дублировались
 в секциях `#personalsky` и `#personalsky_privacy` лендинга
-[vibecoding](https://github.com/dvorzhik/vibecoding) — они удалены, лендинг ссылается на этот сайт.
+[sunset](https://github.com/dvorzhik/sunset) — они удалены, лендинг ссылается на этот сайт.
 Правки текстов вносятся только здесь.
 
 ## Контакты
